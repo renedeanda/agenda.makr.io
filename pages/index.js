@@ -44,7 +44,7 @@ export default function Home() {
         id: Date.now(),
         title: currentItem,
         duration: currentTime,
-        timeLeft: currentTime,
+        timeLeft: currentTime * 60, // Convert to seconds
         isDone: false,
       };
       setAgendaItems(prevItems => [...prevItems, newItem]);
@@ -62,11 +62,19 @@ export default function Home() {
     setActiveIndex(index);
   };
 
+  const updateItemTime = (index, newTimeLeft) => {
+    setAgendaItems(prevItems => {
+      const newItems = [...prevItems];
+      newItems[index] = { ...newItems[index], timeLeft: newTimeLeft };
+      return newItems;
+    });
+  };
+
   const onTimerComplete = () => {
     setAgendaItems(prevItems => {
       const newItems = [...prevItems];
       if (newItems[activeIndex]) {
-        newItems[activeIndex] = { ...newItems[activeIndex], isDone: true };
+        newItems[activeIndex] = { ...newItems[activeIndex], isDone: true, timeLeft: 0 };
       }
       return newItems;
     });
@@ -147,9 +155,11 @@ export default function Home() {
 
         {activeIndex !== null && (
           <Timer
-            duration={agendaItems[activeIndex].duration}
+            duration={agendaItems[activeIndex].duration * 60}
+            timeLeft={agendaItems[activeIndex].timeLeft}
             isActive={true}
             onComplete={onTimerComplete}
+            onTick={(newTimeLeft) => updateItemTime(activeIndex, newTimeLeft)}
           />
         )}
 
