@@ -12,7 +12,7 @@ const AgendaItem = ({ item, index, startTimer, removeItem, isActive, isDone }) =
       className={`mb-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md flex flex-col sm:flex-row justify-between items-start sm:items-center ${isDone ? 'opacity-50' : ''}`}
     >
       <div className="flex-grow mb-2 sm:mb-0">
-        <h3 className={`text-lg font-semibold ${isDone ? 'line-through' : ''} text-gray-800 dark:text-white`}>{item.title}</h3>
+        <h3 className={`text-lg font-semibold ${isDone ? 'line-through' : ''} text-text-light dark:text-text-dark`}>{item.title}</h3>
         <p className="text-sm text-gray-600 dark:text-gray-300">
           Duration: {item.duration} minutes | Time Left: {item.timeLeft} minutes
         </p>

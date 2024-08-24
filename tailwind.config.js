@@ -1,23 +1,22 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./pages/**/*.{js,jsx}",
-    "./components/**/*.{js,jsx}",
+    "./pages/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
   ],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: '#6366f1',
-        secondary: '#8b5cf6',
-        accent: '#f59e0b',
+        primary: '#6366f1',  // Indigo
+        secondary: '#8b5cf6',  // Purple
+        accent: '#f59e0b',  // Amber
         background: {
-          light: '#f3f4f6',
-          dark: '#1f2937',
+          light: '#f3f4f6',  // Gray-100
+          dark: '#1f2937',  // Gray-800
         },
         text: {
-          light: '#1f2937',
-          dark: '#f3f4f6',
+          light: '#1f2937',  // Gray-800
+          dark: '#f3f4f6',  // Gray-100
         },
       },
       fontFamily: {

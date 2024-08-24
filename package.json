@@ -10,10 +10,12 @@
     "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.3",
     "@heroicons/react": "^2.1.5",
     "framer-motion": "^11.3.30",
     "howler": "^2.2.4",
     "jspdf": "^2.5.1",
+    "lucide-react": "^0.435.0",
     "next": "14.2.6",
     "react": "^18",
     "react-dom": "^18",
