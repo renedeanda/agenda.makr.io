@@ -152,13 +152,15 @@ export default function Home() {
             className="input flex-grow"
           />
           <TimePicker value={currentTime} onChange={setCurrentTime} />
-          <button
-            onClick={addItem}
-            className="btn btn-primary flex items-center justify-center"
-          >
-            <PlusIcon className="h-5 w-5 mr-2" />
-            Add Item
-          </button>
+          <div className="px-4 sm:px-0">
+            <button
+              onClick={addItem}
+              className="flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              <PlusIcon className="h-6 w-6 sm:h-8 sm:w-8 mr-2" />
+              Add Item
+            </button>
+          </div>
         </div>
 
         {activeIndex !== null && agendaItems[activeIndex] && (
@@ -198,14 +200,19 @@ export default function Home() {
           </motion.button>
         )}
       </div>
-
-      <MeetingModal
-        isOpen={isModalOpen}
-        closeModal={() => setIsModalOpen(false)}
-        meetings={meetings}
-        loadMeeting={selectMeeting}
-        createNewMeeting={createNewMeeting}
-      />
+      <div className="text-center mt-6">
+        <a
+          href="https://renedeanda.com?utm_source=agenda_maker"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`inline-block px-4 py-2 rounded-full transition duration-300 ${darkMode
+            ? 'bg-gray-800 hover:bg-gray-700 text-gray-200'
+            : 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+            }`}
+        >
+          Made with 🧡 + 🤖 by René DeAnda
+        </a>
+      </div>
     </Layout>
   );
 }
