@@ -54,7 +54,13 @@ export default function Home() {
   };
 
   const removeItem = (id) => {
-    setAgendaItems(prevItems => prevItems.filter(item => item.id !== id));
+    setAgendaItems(prevItems => {
+      const newItems = prevItems.filter(item => item.id !== id);
+      if (activeIndex !== null && newItems.length <= activeIndex) {
+        setActiveIndex(null);
+      }
+      return newItems;
+    });
   };
 
   const startTimer = (index) => {
@@ -65,7 +71,9 @@ export default function Home() {
   const updateItemTime = (index, newTimeLeft) => {
     setAgendaItems(prevItems => {
       const newItems = [...prevItems];
-      newItems[index] = { ...newItems[index], timeLeft: newTimeLeft };
+      if (newItems[index]) {
+        newItems[index] = { ...newItems[index], timeLeft: newTimeLeft };
+      }
       return newItems;
     });
   };
@@ -153,7 +161,7 @@ export default function Home() {
           </button>
         </div>
 
-        {activeIndex !== null && (
+        {activeIndex !== null && agendaItems[activeIndex] && (
           <Timer
             duration={agendaItems[activeIndex].duration * 60}
             timeLeft={agendaItems[activeIndex].timeLeft}
