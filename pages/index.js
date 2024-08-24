@@ -1,16 +1,16 @@
-
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { jsPDF } from 'jspdf';
 import { Howl } from 'howler';
-import { PlusIcon, DocumentDownloadIcon, MoonIcon, SunIcon } from '@heroicons/react/outline';
+import { PlusIcon, DocumentIcon, MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import AgendaItem from '../components/AgendaItem';
+import TimePicker from '../components/TimePicker';
 
 export default function Home() {
   const [agendaItems, setAgendaItems] = useState([]);
   const [currentItem, setCurrentItem] = useState('');
-  const [currentTime, setCurrentTime] = useState('');
+  const [currentTime, setCurrentTime] = useState(15); // Default to 15 minutes
   const [activeIndex, setActiveIndex] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -34,16 +34,16 @@ export default function Home() {
   }, [darkMode]);
 
   const addItem = () => {
-    if (currentItem && currentTime) {
+    if (currentItem && currentTime > 0) {
       const newItem = {
         id: Date.now(),
         title: currentItem,
-        duration: parseInt(currentTime),
-        timeLeft: parseInt(currentTime)
+        duration: currentTime,
+        timeLeft: currentTime
       };
       setAgendaItems([...agendaItems, newItem]);
       setCurrentItem('');
-      setCurrentTime('');
+      setCurrentTime(15); // Reset to default 15 minutes
     }
   };
 
@@ -73,15 +73,15 @@ export default function Home() {
   const exportToPDF = () => {
     const doc = new jsPDF();
     doc.setFontSize(20);
-    doc.setTextColor(99, 102, 241);  // Indigo color
+    doc.setTextColor(99, 102, 241);
     doc.text("Meeting Agenda", 20, 20);
     doc.setFontSize(12);
-    doc.setTextColor(0, 0, 0);  // Black color for text
+    doc.setTextColor(0, 0, 0);
     let yPos = 40;
     agendaItems.forEach((item, index) => {
-      doc.setTextColor(99, 102, 241);  // Indigo color for item title
+      doc.setTextColor(99, 102, 241);
       doc.text(`${index + 1}. ${item.title}`, 20, yPos);
-      doc.setTextColor(0, 0, 0);  // Black color for duration
+      doc.setTextColor(0, 0, 0);
       doc.text(`Duration: ${item.duration} minutes`, 30, yPos + 7);
       yPos += 20;
     });
@@ -100,18 +100,28 @@ export default function Home() {
       </Head>
 
       <main className="container mx-auto px-4 py-8 transition-colors duration-200 ease-in-out">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-primary">Meeting Agenda Planner</h1>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex justify-between items-center mb-8"
+        >
+          <h1 className="text-4xl font-bold gradient-text">Meeting Agenda Planner</h1>
           <button
             onClick={toggleDarkMode}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white"
+            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white transition-all duration-200 hover:scale-110"
           >
             {darkMode ? <SunIcon className="h-6 w-6" /> : <MoonIcon className="h-6 w-6" />}
           </button>
-        </div>
+        </motion.div>
 
-        <div className="mb-8">
-          <div className="flex space-x-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mb-8"
+        >
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <input
               type="text"
               value={currentItem}
@@ -119,21 +129,16 @@ export default function Home() {
               placeholder="Agenda Item"
               className="input flex-grow"
             />
-            <input
-              type="number"
-              value={currentTime}
-              onChange={(e) => setCurrentTime(e.target.value)}
-              placeholder="Duration (min)"
-              className="input w-32"
-            />
+            <TimePicker value={currentTime} onChange={setCurrentTime} />
             <button
               onClick={addItem}
-              className="btn btn-primary"
+              className="btn btn-primary flex items-center justify-center"
             >
-              <PlusIcon className="h-6 w-6" />
+              <PlusIcon className="h-5 w-5 mr-2" />
+              Add Item
             </button>
           </div>
-        </div>
+        </motion.div>
 
         <AnimatePresence>
           {agendaItems.map((item, index) => (
@@ -149,13 +154,16 @@ export default function Home() {
         </AnimatePresence>
 
         {agendaItems.length > 0 && (
-          <button
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             onClick={exportToPDF}
             className="mt-8 btn btn-secondary flex items-center"
           >
-            <DocumentDownloadIcon className="h-6 w-6 mr-2" />
+            <DocumentIcon className="h-5 w-5 mr-2" />
             Export to PDF
-          </button>
+          </motion.button>
         )}
       </main>
     </div>

@@ -1,4 +1,3 @@
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -9,21 +8,24 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#6366f1',  // Indigo
-        secondary: '#8b5cf6',  // Purple
-        accent: '#f59e0b',  // Amber
+        primary: '#6366f1',
+        secondary: '#8b5cf6',
+        accent: '#f59e0b',
         background: {
-          light: '#f3f4f6',  // Gray-100
-          dark: '#1f2937',  // Gray-800
+          light: '#f3f4f6',
+          dark: '#1f2937',
         },
         text: {
-          light: '#1f2937',  // Gray-800
-          dark: '#f3f4f6',  // Gray-100
+          light: '#1f2937',
+          dark: '#f3f4f6',
         },
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      }
     },
   },
   plugins: [],

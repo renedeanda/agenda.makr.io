@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -13,15 +12,18 @@
 
 @layer components {
   .btn {
-    @apply px-4 py-2 rounded-md font-semibold transition-colors duration-200;
+    @apply px-4 py-2 rounded-md font-semibold transition-all duration-200 transform hover:scale-105;
   }
   .btn-primary {
-    @apply bg-primary text-white hover:bg-opacity-90;
+    @apply bg-gradient-to-r from-primary to-secondary text-white hover:from-secondary hover:to-primary;
   }
   .btn-secondary {
-    @apply bg-secondary text-white hover:bg-opacity-90;
+    @apply bg-gradient-to-r from-accent to-secondary text-white hover:from-secondary hover:to-accent;
   }
   .input {
-    @apply w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-text-light dark:text-text-dark;
+    @apply w-full p-2 border rounded-md bg-white dark:bg-gray-700 text-text-light dark:text-text-dark focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
   }
 }

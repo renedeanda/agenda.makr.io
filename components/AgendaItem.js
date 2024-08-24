@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ClockIcon, TrashIcon } from '@heroicons/react/outline';
+import { ClockIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 const AgendaItem = ({ item, index, startTimer, removeItem, isActive }) => {
   return (
@@ -9,6 +8,7 @@ const AgendaItem = ({ item, index, startTimer, removeItem, isActive }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3 }}
       className="mb-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md flex justify-between items-center"
     >
       <div className="flex-grow">
