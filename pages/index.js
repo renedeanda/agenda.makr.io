@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { AnimatePresence, motion } from 'framer-motion';
 import { jsPDF } from 'jspdf';
-import { PlusIcon, DocumentIcon, MoonIcon, SunIcon, SaveIcon, FolderOpenIcon } from '@heroicons/react/24/outline';
+import { PlusIcon, DocumentTextIcon, MoonIcon, SunIcon, BookmarkIcon, FolderOpenIcon } from '@heroicons/react/24/outline';
 import AgendaItem from '../components/AgendaItem';
 import TimePicker from '../components/TimePicker';
 
@@ -143,7 +143,7 @@ export default function Home() {
               onClick={saveMeeting}
               className="btn btn-secondary flex items-center"
             >
-              <SaveIcon className="h-5 w-5 mr-2" />
+              <BookmarkIcon className="h-5 w-5 mr-2" />
               Save Meeting
             </button>
             <button
@@ -213,7 +213,7 @@ export default function Home() {
             onClick={exportToPDF}
             className="mt-8 btn btn-secondary flex items-center"
           >
-            <DocumentIcon className="h-5 w-5 mr-2" />
+            <DocumentTextIcon className="h-5 w-5 mr-2" />
             Export to PDF
           </motion.button>
         )}
