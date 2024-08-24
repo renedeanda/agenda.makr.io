@@ -1,8 +1,8 @@
 import React from 'react';
 
 const TimePicker = ({ value, onChange }) => {
-  const hours = Array.from({ length: 4 }, (_, i) => i);
-  const minutes = [0, 15, 30, 45];
+  const hours = Array.from({ length: 5 }, (_, i) => i);
+  const minutes = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 
   return (
     <div className="flex space-x-2">
