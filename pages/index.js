@@ -6,7 +6,7 @@ import AgendaItem from '../components/AgendaItem';
 import TimePicker from '../components/TimePicker';
 import Timer from '../components/Timer';
 import Layout from '../components/Layout';
-import exportToPDF from '../utils/exportToPDF';
+import exportToPDF from '../utils/exportToPdf';
 
 export default function Home() {
   const [agendaItems, setAgendaItems] = useState([]);
