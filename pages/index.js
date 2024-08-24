@@ -6,7 +6,6 @@ import AgendaItem from '../components/AgendaItem';
 import TimePicker from '../components/TimePicker';
 import Timer from '../components/Timer';
 import Layout from '../components/Layout';
-import MeetingModal from '../components/MeetingModal';
 import exportToPDF from '../utils/exportToPDF';
 
 export default function Home() {
@@ -188,16 +187,18 @@ export default function Home() {
         </AnimatePresence>
 
         {agendaItems.length > 0 && (
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            onClick={() => exportToPDF(currentMeeting, agendaItems)}
-            className="mt-8 btn btn-secondary flex items-center"
-          >
-            <DocumentTextIcon className="h-5 w-5 mr-2" />
-            Export to PDF
-          </motion.button>
+          <div className="px-4 sm:px-0 flex justify-center mt-6">
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              onClick={() => exportToPDF(currentMeeting, agendaItems)}
+              className="flex items-center justify-center w-full sm:w-auto bg-gradient-to-r from-orange-400 to-purple-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:scale-105 hover:from-orange-500 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+            >
+              <DocumentTextIcon className="h-6 w-6 sm:h-8 sm:w-8 mr-2" />
+              Export to PDF
+            </motion.button>
+          </div>
         )}
       </div>
       <div className="text-center mt-6">
